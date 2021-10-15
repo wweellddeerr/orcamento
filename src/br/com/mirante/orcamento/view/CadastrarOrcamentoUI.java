@@ -1,0 +1,81 @@
+package br.com.mirante.orcamento.view;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import br.com.mirante.orcamento.domain.ItemOrcamento;
+import br.com.mirante.orcamento.domain.Orcamento;
+import br.com.mirante.orcamento.servico.CadastrarOrcamentoServico;
+
+public class CadastrarOrcamentoUI {
+	
+	private CadastrarOrcamentoServico servico = new CadastrarOrcamentoServico();
+	Scanner scanner = new Scanner(System.in);
+
+	public void exibir() {
+		System.out.println("Digite a descrição:");
+		var descricaoOrcamento = scanner.nextLine();
+		
+		System.out.println("Digite o mês:");
+		var mes = scanner.nextInt();
+		
+		System.out.println("Digite o ano:");
+		var ano = scanner.nextInt();
+		
+		System.out.println("Digite o valor total do orçamento:");
+		var valorTotal = scanner.nextFloat();
+		
+		scanner.nextLine();
+		
+		System.out.println("Informe um item de orçamento:");
+		var item = scanner.nextLine();
+
+		List<String> itens = new ArrayList<>();
+		itens.add(item);
+		
+		System.out.println("Deseja incluir um novo item? [S] / [N]");
+		String novoItem = scanner.nextLine();
+		while(novoItem.equals("S")) {
+			System.out.println("Informe um item de orçamento:");
+			item = scanner.nextLine();
+			itens.add(item);
+			System.out.println("Deseja incluir um novo item? [S] / [N]");
+			novoItem = scanner.nextLine();
+		}
+		
+		List<ItemOrcamento> itensOrcamento = new ArrayList<ItemOrcamento>();
+		for (String i : itens) {
+			itensOrcamento.add(converter(i));
+		}
+		
+		var orcamento = new Orcamento(
+			descricaoOrcamento, mes, ano, valorTotal, itensOrcamento
+		);
+		
+		servico.cadastrar(orcamento);
+		new MenuPrincipal().exibir();
+	}
+	
+	private ItemOrcamento converter(String item) {
+		String[] atributos = item.split(";");
+		String origem = atributos[0];
+		String codigo = atributos[1];
+		String descricao = atributos[2];
+		float valorUnitario = Float.parseFloat(atributos[3]);
+		String unidade = atributos[4];
+		float quantidade = Float.parseFloat(atributos[5]);
+		float valorTotalInformado = Float.parseFloat(atributos[6]);
+		//
+		return new ItemOrcamento(
+			origem, codigo, descricao, valorUnitario, unidade, quantidade, valorTotalInformado
+		);
+	}
+	/**
+			float valorUnitario,
+			String unidade,
+			float quantidade,
+			float valorTotalInformado
+	 */
+
+}
