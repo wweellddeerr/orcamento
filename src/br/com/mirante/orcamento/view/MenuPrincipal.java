@@ -21,12 +21,14 @@ public class MenuPrincipal {
 	private void processarOpcaoSelecionada(String opcaoSelecionada) {
 		if(opcaoSelecionada.equals("1")) {
 			new CadastrarOrcamentoUI().exibir();
-		} else if(opcaoSelecionada.equals("2")) {
-			System.out.println("a opção selecionada foi 2");
+		}
+		if(opcaoSelecionada.equals("2")) {
 			new ListarOrcamentosUI().exibir();
-		} else if(opcaoSelecionada.equals("3")) {
-			System.out.println("a opção selecionada foi 3");		
-		} else if(opcaoSelecionada.equals("4")) {
+		}
+		if(opcaoSelecionada.equals("3")) {
+			new DetalharOrcamentoUI().exibir();		
+		}
+		if(opcaoSelecionada.equals("4")) {
 			System.out.println("Adeus...");
 			scanner.close();
 			System.exit(0);

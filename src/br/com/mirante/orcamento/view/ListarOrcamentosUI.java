@@ -10,12 +10,7 @@ public class ListarOrcamentosUI {
 	public void exibir() {
 		var orcamentos = servico.listarOrcamentos();
 		for (Orcamento orcamento : orcamentos) {
-			System.out.print(orcamento.getDescricao());
-			System.out.print("           |");
-			System.out.print(orcamento.getMes() + "/" + orcamento.getAno());
-			System.out.print("           |");
-			System.out.print(orcamento.getValorTotalInformado());
-			System.out.println();
+			UIUtils.exibirOrcamento(orcamento);
 		}
 		new MenuPrincipal().exibir();
 	}

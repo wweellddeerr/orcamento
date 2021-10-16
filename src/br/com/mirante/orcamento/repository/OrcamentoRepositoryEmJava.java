@@ -28,5 +28,15 @@ public class OrcamentoRepositoryEmJava implements OrcamentoRepository {
 		return orcamentos;
 	}
 
+	@Override
+	public Orcamento recuperar(int id) {
+		for (Orcamento orcamento : orcamentos) {
+			if(orcamento.getId() == id) {
+				return orcamento;
+			}
+		}
+		return null;
+	}
+
 	
 }

@@ -44,11 +44,8 @@ public class CadastrarOrcamentoUI {
 			novoItem = scanner.nextLine();
 		}
 		
-		List<ItemOrcamento> itensOrcamento = new ArrayList<ItemOrcamento>();
-		for (String i : itens) {
-			itensOrcamento.add(converter(i));
-		}
-		
+		List<ItemOrcamento> itensOrcamento = itens.stream().map(this::converter).toList();
+	
 		var orcamento = new Orcamento(
 			descricaoOrcamento, mes, ano, valorTotal, itensOrcamento
 		);
@@ -71,11 +68,4 @@ public class CadastrarOrcamentoUI {
 			origem, codigo, descricao, valorUnitario, unidade, quantidade, valorTotalInformado
 		);
 	}
-	/**
-			float valorUnitario,
-			String unidade,
-			float quantidade,
-			float valorTotalInformado
-	 */
-
 }

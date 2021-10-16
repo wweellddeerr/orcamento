@@ -33,4 +33,32 @@ public class ItemOrcamento {
 		return valorUnitario * quantidade != valorTotalInformado;
 	}
 
+	public String getOrigem() {
+		return origem;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public float getValorUnitario() {
+		return valorUnitario;
+	}
+
+	public String getUnidade() {
+		return unidade;
+	}
+
+	public float getQuantidade() {
+		return quantidade;
+	}
+
+	public float getValorTotalInformado() {
+		return valorTotalInformado;
+	}
+
 }
